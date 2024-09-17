@@ -1,0 +1,41 @@
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: inherit;
+}
+
+body{
+    background-color: green;
+    margin: 0;
+    height: 100vh;
+}
+
+.mesa{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: blue;
+}
+
+.carta{
+    margin: auto;
+    width: 226px;
+    height: 314px;
+    border-radius: 8px;
+    background-color: yellow;
+}
+
+.painel{
+    margin: 0 auto;
+    display: flex;
+    width: 400px;
+    border-radius: 5px;
+    background-color: red;
+}
+
+.botoes{
+    margin: 0 5px;
+    padding: 8px;
+}
