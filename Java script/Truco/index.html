@@ -1,80 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cartas</title>
-  <link href="../Truco/style.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cartas</title>
+    <link href="../Truco/style.css" rel="stylesheet">
+  </head>
 
-<body>
-  <main>
-    <div class="nav">
-      <div class="info">Cartas Restantes: 
-          <span id="remaining">0</span>
-      </div>
-      <div class="info">Deck ID:
-          <span id="deck_id">_</span>
-      </div>
-   </div>
-    <div class="mesa">
-      <div class="carta" id="carta1"></div>
-      <div class="carta" id="carta2"></div>
-      <div class="carta" id="carta3"></div>
+  <body>
+    <main>
+      <div class="nav">
+        <div class="info">Cartas Restantes: 
+            <span id="remaining">0</span>
+        </div>
+        <div class="info">Deck ID:
+            <span id="deck_id">_</span>
+        </div>
     </div>
-    <div class="painel">
-      <button class="botoes">Novo Baralho</button>
-      <button class="botoes" onclick="olharcartas()">Puxar Cartas</button>
-      <button class="botoes" onclick="embaralhar()">Embaralhar</button>
-    </div>
+      <div class="mesa">
+        <div class="carta" id="carta1"></div>
+        <div class="carta" id="carta2"></div>
+        <div class="carta" id="carta3"></div>
+      </div>
+      <div class="painel">
+        <button class="botoes"onclick="gerarnovobaralho()">Novo Baralho</button>
+        <button class="botoes" onclick="olharcartas()">Puxar Cartas</button>
+        <button class="botoes" onclick="embaralhar()">Embaralhar</button>
+      </div>
 
-  </main>
-</body>
-<script>
-  function getjsondata(respostaApi) {
-        const json = respostaApi.json();
-        return json;
-  }   
-  function atualizarInfo(jsonData){
-    if(!jsonData.success)
-      throw new Error("Erro  ao  acessar Api ");
-    const deck_id = jsonData.deck_id;
-    const remaining = jsonData.remaining;
-    const info1 = document.getElementById("deck_id");
-    const info2 = document.getElementById("remaining")
-    info1.innerText = deck_id;
-    info2.innerText = remaining;
-    return jsonData;
-  }   
-  function olharcartas() {
-    fetch("https://deckofcardsapi.com/api/deck/5r45ul61mg4e/draw/?count=3")
-      .then(getjsondata)
-      .then(atualizarInfo)
-      .then(function (jsonData) {
-        const cards = jsonData.cards;
-
-        for (let i = 0; i < 3; i++) {
-          const id = `carta${1 + i}`;
-
-          const card1 = document.getElementById(id);
-
-          let img1 = card1.querySelector('img');
-          if (img1 == null) {
-            img1 = document.createElement('img');
-          }
-
-          img1.setAttribute('src', cards[i].image);
-          card1.append(img1);
-        }
-      })
-  }
-
-  function embaralhar() {
-    fetch("https://deckofcardsapi.com/api/deck/5r45ul61mg4e/shuffle/?remaining=false")
-      .then(getjsondata)
-  }
-
-</script>
-
+    </main>
+  </body>
+  <script src="../Truco/main.js"></script>
 </html>
