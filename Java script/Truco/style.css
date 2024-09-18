@@ -39,3 +39,8 @@ body{
     margin: 0 5px;
     padding: 8px;
 }
+
+.info{
+    color: white;
+    font-size: 22px;
+}
